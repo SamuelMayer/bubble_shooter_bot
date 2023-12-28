@@ -1,0 +1,1 @@
+# Script to access shooter-bubble.de
