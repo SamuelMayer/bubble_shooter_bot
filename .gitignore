@@ -1,2 +1,5 @@
 schmierblatt.py
-Coordinate_finder.py
+
+.DS_Store
+.idea
+__pycache__
