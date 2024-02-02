@@ -1,3 +1,10 @@
 schmierblatt.py
+<<<<<<< HEAD
 Coordinate_finder.py
 access_website.py
+=======
+
+.DS_Store
+.idea
+__pycache__
+>>>>>>> cb33719b126773af70f5d493b56a3856bb0b73e4

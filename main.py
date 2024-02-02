@@ -5,7 +5,7 @@ import time
 import random
 import cv2
 from GameController import GameController
-from OCR import OCRClass
+# from OCR import OCRClass
 from digit_classifier import MultiDigitRecognizer
 
 # Define the website URL for Bubble Shooter
@@ -30,10 +30,11 @@ digit_coords = [((1000, 600), (1025, 625)), ((1025, 600), (1055, 625)),
                 ((1055, 600), (1083, 625)), ((1083, 600), (1110, 625)),
                 ((1110, 600), (1136, 625)), ((1136, 600), (1165, 625))]
 templates = {str(i): f'images/digit_templates/template_{i}.png' for i in range(10)}
+
 recognizer = MultiDigitRecognizer(templates, image_path='images/screenshot.png')
 
 # Loop to alternate between taking screenshots, recognizing numbers, and random clicking
-for _ in range(100):  # Example: perform 10 iterations
+for _ in range(100):  # Example: perform 100 iterations
     time.sleep(1.5)  # Wait for game state to stabilize
 
     # Take a screenshot
@@ -45,7 +46,7 @@ for _ in range(100):  # Example: perform 10 iterations
         break
 
     # Recognize the number from the screenshot
-    number = recognizer.classify_digits(digit_coords, confidence_threshold=0.1)
+    number = recognizer.classify_digits(digit_coords, confidence_threshold=0.01)
     print("Recognized Number:", number)
 
     time.sleep(1)
@@ -54,4 +55,6 @@ for _ in range(100):  # Example: perform 10 iterations
 
     # Wait before next iteration
     time.sleep(1)
+
+
 
