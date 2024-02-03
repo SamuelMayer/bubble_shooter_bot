@@ -32,7 +32,7 @@ import cv2
 import numpy as np
 
 # Assuming 'my_image.png' is your preprocessed image
-image = cv2.imread('images/digit_templates/template_1.png', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('images/Selection_003.png', cv2.IMREAD_GRAYSCALE)
 image = cv2.resize(image, (28, 28))
 image = image / 255.0
 image = np.expand_dims(image, axis=0)  # Reshape to match model input

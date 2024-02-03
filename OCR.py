@@ -1,43 +1,58 @@
 import pytesseract
-from PIL import ImageGrab
+from PIL import Image
 import cv2
 import numpy as np
 import logging
 
 class OCRClass:
-    def __init__(self, top_left, bottom_right):
-        self.top_left = top_left
-        self.bottom_right = bottom_right
-
-    def capture_area(self):
-        """Capture the specified screen area."""
-        return ImageGrab.grab(bbox=(self.top_left[0], self.top_left[1], self.bottom_right[0], self.bottom_right[1]))
+    def __init__(self):
+        """Initialize the OCR class without needing screen coordinates."""
 
     def preprocess_image(self, image):
         """Preprocess the image for OCR."""
         # Convert the image to grayscale
         gray_image = cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY)
-        # Write image for debgging DELETE!
-        cv2.imwrite('images/debug_preprocessed.png', gray_image)
-        # Apply thresholding, etc. if needed
+        # Apply thresholding, etc., if needed
         # ...
         return gray_image
 
-    def extract_text(self, image):
+    def extract_text(self, image_path):
         """Extract text from the given image using OCR."""
+        # Load the image from the given path
+        image = Image.open(image_path)
         processed_image = self.preprocess_image(image)
         text = pytesseract.image_to_string(processed_image)
         return text
 
-# Example usage
-# Define the top left and bottom right coordinates of the score area
-# x1 = 1015
-# y1 = 595
-# x2 = 1161
-# y2 = 622
-# top_left = (1015, 595)
-# bottom_right = (x2, y2)
-# ocr = OCRClass(top_left, bottom_right)
-# screenshot = ocr.capture_area()
-# extracted_text = ocr.extract_text(screenshot)
-# print(extracted_text)
+
+class ScoreProcessor:
+    def __init__(self):
+        """Initialize the ScoreProcessor class."""
+    
+    @staticmethod
+    def clean_and_convert_score(text):
+        """Clean OCR output and convert to integer."""
+        # Remove non-numeric characters
+        cleaned_text = ''.join(filter(str.isdigit, text))
+        
+        # Check if cleaned text is empty or not convertible to an integer
+        if cleaned_text == '':
+            return None  # or return a default value like 0
+        else:
+            return int(cleaned_text)
+
+# Example usage:
+ocr = OCRClass()
+extracted_text = ocr.extract_text('images/Selection_011.png')
+print(extracted_text)
+
+# Assuming 'extracted_text' is the raw OCR output
+# Example problematic OCR output
+score_processor = ScoreProcessor()
+cleaned_score = score_processor.clean_and_convert_score(extracted_text)
+if cleaned_score is not None:
+    print(f"Cleaned Score: {cleaned_score}")
+else:
+    print("No valid score extracted.")
+#
+

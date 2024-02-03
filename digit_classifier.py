@@ -49,6 +49,14 @@ class MultiDigitRecognizer:
 #    '9': 'images/digit_templates/template_9.png'
 #}
 
+## Digit recognition setup
+#digit_coords = [((1000, 600), (1025, 625)), ((1025, 600), (1055, 625)),
+#                ((1055, 600), (1083, 625)), ((1083, 600), (1110, 625)),
+#                ((1110, 600), (1136, 625)), ((1136, 600), (1165, 625))]
+#
+#templates = {str(i): f'images/digit_templates/template_{i}.png' for i in range(10)}
+
+
 #templates = {str(i): f'images/digit_templates/template_{i}.png' for i in range(10)}
 #
 #digit_coords = [((1000, 600), (1025, 625)), ((1025, 600), (1055, 625)), ((1055, 600), (1083, 625)), ((1083, 600), (1110, 625)), ((1110, 600), (1136, 625)), ((1136, 600), (1165, 625))]  # List of tuples of top-left and bottom-right coords for each digit
