@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+
 import webbrowser
 import subprocess
 import pyautogui
 import time
 import random
 import cv2
+import sys 
 from GameController import GameController
 from OCR import OCRClass, ScoreProcessor
 from data_handling import GameStateStorage
@@ -20,7 +23,7 @@ click_areas = {
 }
 
 # Initialize game controller
-game = GameController(website_url, click_area = click_areas['Laptop_Sam'])
+game = GameController(website_url, template_path='images/sound_off_button.png')
 
 # Open the game and turn off sound
 game.open_game()
